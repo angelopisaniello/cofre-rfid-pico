@@ -30,6 +30,23 @@ Este projeto tem aplicação potencial em **cofres de hotel**, **estações púb
 ## 📝 Lista de Componentes
 
 > Satatus: Developing ⚠️
+>
+| Descrição do Produto                    | Quantidade | Valor Total |
+|-----------------------------------------|------------|-------------|
+| Raspberry Pi Picpo (Zero)               |     01     | R$ 159,90   |
+| Mini Solenoide 12 (V)                   |     03     | R$ 129,28   |
+| Kit RFID Mfrc522 - 13,56 (MHz)          |     01     | R$ 12,82    |
+| Tag RFID - Chaveiro (13,56Mhz)          |     02     | R$ 3,60     |
+| Teclado Matricial de Membrana 16 Teclas |     01     | R$ 6,17     |
+| Display oLED 0.96 I2C Branco            |     01     | R$ 21,75    |
+| Buzzer Passivo 5V                       |     01     | R$ 1,69     |
+| Kit Receptor e Emissor IR 5mm           |     03     | R$ 8,55     |
+| LED 5mm Verde                           |     01     | R$ 0,24     |
+| Transistor   ?????                      |     01     | R$          |
+| Resistor     ?????                      |     01     | R$          |
+| Placa padrão ?????                      |     01     | R$          |
+|                                         |      Total | R$ 344,00   |
+
 
 ## Diagrama de Blocos
 
