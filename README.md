@@ -58,7 +58,7 @@ Este projeto tem aplicação potencial em **cofres de hotel**, **estações púb
 
 ## Projeto das Gavetas
 
-![IMAGE ALT](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/PROJETOV4.png?raw=true)
+![IMAGE ALT](https://github.com/angelopisaniello/cofre-rfid-pico/blob/873020a4d065b4601561e1d18277e452cffda56c/Folha_de_desenho.png)
 
 
 > Satatus: Developing ⚠️
