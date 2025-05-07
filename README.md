@@ -49,10 +49,7 @@ Este projeto tem aplicação potencial em **cofres de hotel**, **estações púb
 
 
 ## Diagrama de Blocos
-
-![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/PROJETOV4.png)
-
-![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/PROJETOV4.png?raw=true)
+![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/7ebfa6f56cdab01b99e65811f80c33ac2f981f5f/PROJETOV4.png)
 
 ## Esquema Elétrico
 
