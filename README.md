@@ -52,6 +52,8 @@ Este projeto tem aplicação potencial em **cofres de hotel**, **estações púb
 
 ![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/PROJETOV4.png)
 
+![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/PROJETOV4.png?raw=true)
+
 ## Esquema Elétrico
 
 > Satatus: Developing ⚠️
