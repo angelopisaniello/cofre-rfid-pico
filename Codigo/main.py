@@ -18,11 +18,11 @@ gavetas = { "Angelo" : 1, "Daniel": 2, "Danilo": 3} # Dicionario para as gavetas
 
 # Mapeamento de Hardware:
 Led_on_board = machine.Pin(25, machine.Pin.OUT) # Led ON Board
-buzzer = machine.Pin(21, machine.Pin.OUT) # Buzzer
-gLed = machine.Pin(17, machine.Pin.OUT) # LED verde
-rLed = machine.Pin(16, machine.Pin.OUT) # LED vermelho
-solenoide = [ machine.Pin(19, machine.Pin.OUT), machine.Pin(18, machine.Pin.OUT), machine.Pin(20, machine.Pin.OUT)] # Solenoides
-reader = MFRC522(spi_id = 0, sck = 6, miso = 4, mosi = 7, cs = 5, rst = 22) # Leitor RFID
+buzzer = machine.Pin(2, machine.Pin.OUT) # Buzzer
+gLed = machine.Pin(0, machine.Pin.OUT) # LED verde
+rLed = machine.Pin(1, machine.Pin.OUT) # LED vermelho
+solenoide = [ machine.Pin(12, machine.Pin.OUT), machine.Pin(13, machine.Pin.OUT), machine.Pin(14, machine.Pin.OUT)] # Solenoides
+reader = MFRC522(spi_id = 0, sck = 6, miso = 4, mosi = 7, cs = 5, rst = 5) # Leitor RFID
 rtc = RTC() # rtc
 i2c=I2C(0,scl=Pin(9),sda=Pin(8),freq=200000) # Display OLED
 oled = SSD1306_I2C(WIDTH,HEIGHT,i2c) # Display OLED
@@ -82,8 +82,6 @@ oled.show()
 #---------------------------------------------------------------------------------------------
 
 # Rotina Principal (Loop):
-
-
 
 while 1:
     oled.fill(0) # Cor de fundo preta
