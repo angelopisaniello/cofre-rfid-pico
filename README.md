@@ -77,8 +77,6 @@ Este projeto tem aplicação potencial em **cofres de hotel**, **estações púb
 
 ## 🛠️ Projeto Mecânico das Gavetas
 
-![Projeto Mecânico](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/Folha_de_desenho_v2.png)
-
 O projeto das peças mecânicas foi desenvolvido utilizando o software **Autodesk Fusion 360**, versão **2601.1.37 x86_64**, com plano **Estudante**. O ambiente de modelagem foi realizado no **Windows 11 Pro 24H2**.
 
 As peças foram concebidas visando **facilidade de fabricação e montagem**, sendo idealizadas para **impressão 3D** utilizando o material **PLA (Ácido Polilático)**.
