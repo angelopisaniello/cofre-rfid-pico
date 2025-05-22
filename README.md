@@ -75,7 +75,26 @@ Este projeto tem aplicação potencial em **cofres de hotel**, **estações púb
 
 > Satatus: Developing ⚠️
 
-## Projeto Mecânico das Gavetas
+## 🛠️ Projeto Mecânico das Gavetas
+
+![Projeto Mecânico](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/Folha_de_desenho_v2.png)
+
+O projeto das peças mecânicas foi desenvolvido utilizando o software **Autodesk Fusion 360**, versão **2601.1.37 x86_64**, com plano **Estudante**. O ambiente de modelagem foi realizado no **Windows 11 Pro 24H2**.
+
+As peças foram concebidas visando **facilidade de fabricação e montagem**, sendo idealizadas para **impressão 3D** utilizando o material **PLA (Ácido Polilático)**.
+
+### 🎯 Motivos para a escolha do PLA:
+- Excelente **custo-benefício**.
+- **Facilidade de impressão**, mesmo em impressoras 3D domésticas.
+- **Boa resistência mecânica** e **rigidez**, adequada para a estrutura das gavetas.
+- Material **biodegradável** e com baixo impacto ambiental.
+- **Acabamento estético** superior, com superfície lisa e sem necessidade de pós-processamento complexo.
+
+### 🖥️ Por que o Autodesk Fusion 360?
+- Ferramenta **profissional e amplamente utilizada** na indústria.
+- Permite integração completa entre **modelagem 3D**, **simulações** e **geração de arquivos para impressão (STL)**.
+- Licença gratuita para **uso educacional**, ideal para o desenvolvimento acadêmico.
+- Ambiente intuitivo, com recursos de **parametrização** e **colaboração em nuvem**.
 
 ![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/Folha_de_desenho_v2.png)
 
