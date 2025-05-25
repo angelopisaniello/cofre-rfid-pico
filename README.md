@@ -71,7 +71,14 @@ Este projeto tem aplicação potencial em **cofres de hotel**, **estações púb
 ## Diagrama de Blocos
 ![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/c4062b0324a2e89cb6f8d55536021832ba76cf56/PROJETO_V5.png)
 
-## Esquema Elétrico
+## 📥 Esquemáticos do Circuito Eletrônico
+
+Os diagramas do circuito eletrônico do projeto foram desenvolvidos utilizando o software **KiCad EDA 9.0.2**.
+
+- [Esquemático - Módulo de Controle](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/Esquematico_eletronico/proj1_sch01.pdf)
+- [Esquemático - Módulo de Potência](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/Esquematico_eletronico/proj1_sch02.pdf)
+
+Os esquemáticos incluem todos os componentes principais do sistema: Raspberry Pi Pico, RFID, LEDs de sinalização, drivers MOSFET, sensores ópticos, entre outros.
 
 > Satatus: Developing ⚠️
 
