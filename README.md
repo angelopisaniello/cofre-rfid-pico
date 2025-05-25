@@ -78,9 +78,6 @@ Os diagramas do circuito eletrônico do projeto foram desenvolvidos utilizando o
 - [Esquemático - Módulo de Controle](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/Esquematico_eletronico/proj1_sch01.pdf)
 - [Esquemático - Módulo de Potência](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/Esquematico_eletronico/proj1_sch02.pdf)
 
-![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/c19843c76601b57c3b7a9d37e84134024aafdc92/Esquematico_eletronico/proj1_sch01.pdf)
-![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/c19843c76601b57c3b7a9d37e84134024aafdc92/Esquematico_eletronico/proj1_sch02.pdf)
-
 Os esquemáticos incluem todos os componentes principais do sistema: Raspberry Pi Pico, RFID, LEDs de sinalização, drivers MOSFET, sensores ópticos, entre outros.
 
 > Satatus: Developing ⚠️
