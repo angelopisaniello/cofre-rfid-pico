@@ -19,7 +19,8 @@ teclas = [
     ['4', '5', '6', 'B'],
     ['7', '8', '9', 'C'],
     ['*', '0', '#', 'D']
-] # Teclas 
+] # Teclas
+SENHA = "123456" # Senha mestre do cofre
 #---------------------------------------------------------------------------------------------
 
 # Mapeamento de Hardware:
@@ -90,6 +91,57 @@ def Tecla():
                 return teclas[i][j]
         linha.low()
     return -1
+
+#Funcao para cronometar abertura da gaveta
+def Cronometrar_abertura(gav, us ):
+    for i in range(4):
+        oled.fill(0) # Cor de fundo preta
+        print(4-i)
+        oled.text("Bem vindo,", 0, 18)
+        oled.text(us, 0, 30)
+        oled.text("Abrindo " + str(gav) + "...", 0, 45)
+        oled.text("Tempo: " + str(4-i), 30, 55)
+        oled.show()
+        Campainha(100, 1)
+        time.sleep(0.9)
+        oled.fill(0) # Cor de fundo preta
+    print(0)
+    oled.text("Bem vindo,", 0, 18)
+    oled.text(us, 0, 30)
+    oled.text("Abrindo " + str(gav) + "...", 0, 45)
+    oled.text("Tempo: 0", 30, 55)
+    oled.show()
+    
+#Funcao para abrir uma gaveta
+def Abrir_gaveta( gav, us):
+    oled.fill(0) # Cor de fundo preta
+    oled.text("Bem vindo,", 0, 18)
+    oled.text(us, 0, 30)
+    Campainha(200, 3)
+    oled.text("Abrindo " + str(gav) + "...", 0, 45)
+    oled.show()
+    solenoide[gav - 1].on() # Retrai o solenoide
+    gLed.on() # Liga o LED de sinalizacao verde
+    Cronometrar_abertura( gav, us ) # Mostra o cronometro
+    solenoide[gav-1].off() # Desliga o solenoide
+    gLed.off() # Desliga o LED de sinalizacao verde                
+    print("Gaveta " + str(gav) + " aberta")
+    time.sleep(1) # Aguarda 1s
+    
+def Menu_principal():
+    oled.fill(0) # Cor de fundo preta
+    oled.text("Cofre 1.0", 30, 5)
+    oled.text("Aproxime a TAG", 8, 20)
+    oled.show()
+    
+def Menu_mestre(): # Menu de gerenciamente
+    oled.fill(0) # Cor de fundo preta
+    oled.text("Gerenciamento", 25, 5)
+    oled.text("1 - Abrir gaveta 1", 0, 15)
+    oled.text("2 - Abrir gaveta 2", 0, 25)
+    oled.text("3 - Abrir gaveta 3", 0, 35)
+    oled.text("4 - Retroceder", 0, 45)
+    oled.show()
 #---------------------------------------------------------------------------------------------
     
 # Configuracoes Iniciais (Setup):    
@@ -132,23 +184,24 @@ oled.show()
 #     time.sleep_ms(1500) # Aguarda
 flag = time.ticks_ms() # Seta a flag (cronometro)
 while 1:
-    oled.fill(0) # Cor de fundo preta
-    oled.text("Cofre 1.0", 30, 5)
-    oled.show()
+    Menu_principal()
     if ( Tecla() != '*'): # * nao pressionado
         flag = time.ticks_ms() # Reseta a flag (cronometro)
     print(time.ticks_diff(time.ticks_ms(), flag))    
     if ( time.ticks_diff(time.ticks_ms(), flag) >= 10000): # Pressionou por mais de 10 segundos:
+        Campainha(100, 5)
         print("Aguarde...")
         oled.fill(0) # Cor de fundo preta
         oled.text("Aguarde...", 30, 25)
-        oled.show()
         time.sleep_ms(500) # Aguarda
+        oled.show()
         while (Tecla() == "*"): # Ainda nao soltou o *
+            oled.text("Solte o *", 40, 25)
             time.sleep_ms(50) # Aguarda
         flag = time.ticks_ms() # Flag de inicio da subrotina de menu
-        senha = "" 
-        while time.ticks_diff(time.ticks_ms(), flag) < 10000: # Ate 10 segundos de inatividade
+        tentativa = 1 # Tentativas
+        senha = "" # senha digitada
+        while time.ticks_diff(time.ticks_ms(), flag) < 10000 and tentativa <= 3  : # Ate 10 segundos de inatividade ou 3 tentativas
             oled.fill(0) # Cor de fundo preta
             oled.text("Digite a senha:", 10, 20)
             oled.text("*" * len(senha), 32, 40)
@@ -161,6 +214,27 @@ while 1:
                     time.sleep_ms(50) # Aguarda
                 flag = time.ticks_ms() # Reseta a flag (cronometro)   
             print(str(time.ticks_diff(time.ticks_ms(), flag)) + "   " + senha)
+            if ( len(senha) == 6):
+                if ( senha == SENHA): # Senha correta
+                    Campainha(200, 2)
+                    flag = time.ticks_ms() # Reseta a flag (cronometro)   
+                    aux = -1
+                    while time.ticks_diff(time.ticks_ms(), flag) < 10000 and aux != '4': # Ate 10 segundos de inatividade ou opcao por voltar
+                        Menu_mestre()
+                        aux = Tecla()
+                        print("aux = " + str(aux))
+                        if( aux != -1 and aux != '4'):
+                            while Tecla() == aux: # Enquanto estiver pressionado
+                                time.sleep_ms(50) # Aguarda
+                            Abrir_gaveta( int(aux), "Mestre" )
+                            flag = time.ticks_ms() # Reseta a flag (cronometro)
+                        tentativa = 4 # Forca a saida
+                        time.sleep_ms(50) # Aguarda
+                else: # Senha incorreta
+                    Campainha(200, 5)
+                    tentativa = tentativa + 1 # nova tentativa
+                    senha = ""
+                flag = time.ticks_ms() # Reseta a flag 
             time.sleep_ms(50) # Aguarda
     reader.init() # Inicia o leitor
     (stat, tag_type) = reader.request(reader.REQIDL) # Leitura
@@ -174,38 +248,10 @@ while 1:
                 usuario = usuarios[card] # Usuario atual
                 gaveta = gavetas[usuario]
                 log = LOG_to_str(timeStamp, usuario, gaveta) # Obtem a string do LOG
-                oled.text("Bem vindo,", 0, 18)
-                oled.text(usuario, 0, 30)
-                Campainha(200, 3)
-                oled.text("Abrindo " + str(gaveta) + "...", 0, 45)
-                oled.show()
                 print(log)
                 print("Usario Identificado: " + usuario) # Informa o usuario
                 print("Abrindo gaveta " + str(gaveta) + "...") # Informa a gaveta correspondente
-                solenoide[gaveta-1].on() # Liga o solenoide
-                gLed.on() # Liga o LED de sinalizacao verde
-                for i in range(4):
-                    oled.fill(0) # Cor de fundo preta
-                    print(4-i)
-                    oled.text("Bem vindo,", 0, 18)
-                    oled.text(usuario, 0, 30)
-                    oled.text("Abrindo " + str(gaveta) + "...", 0, 45)
-                    oled.text("Tempo: " + str(4-i), 30, 55)
-                    oled.show()
-                    time.sleep(1)
-                oled.fill(0) # Cor de fundo preta
-                print(0)
-                oled.text("Bem vindo,", 0, 18)
-                oled.text(usuario, 0, 30)
-                oled.text("Abrindo " + str(gaveta) + "...", 0, 45)
-                oled.text("Tempo: 0", 30, 55)
-                oled.show()
-                #Campainha(400, 10)
-                #time.sleep(4) # Solenoide ligado por 4s
-                solenoide[gaveta-1].off() # Desliga o solenoide
-                gLed.off() # Desliga o LED de sinalizacao verde                
-                print("Gaveta " + str(gaveta) + " aberta")
-                time.sleep(1) # Aguarda 1s
+                Abrir_gaveta( gaveta, usuario)
             else: # TAG nao encontrada
                 rLed.on() #Liga o LED de sinalizacao vermelho     
                 buzzer.on() # Aciona
@@ -216,7 +262,4 @@ while 1:
                 time.sleep(1) # Aguarda 1s
                 buzzer.off()# Desliga
                 rLed.off() # Desliga o LED de sinalizacao vermelho   
-    #Led_on_board.on() # Liga o LED
-    #time.sleep_ms(ST) # Aguarda 100 ms
-    #Led_on_board.off() # Desliga o LED
     time.sleep_ms(100) # Aguarda 
