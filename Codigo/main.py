@@ -1,5 +1,5 @@
 # Bibliotecas:
-from machine import Pin 	# IOs
+from machine import ADC, Pin 	# ADC =, IOs
 import time 	# Temporizacao
 import utime 	# Temporizacao
 from machine import RTC # Real Time Clock
@@ -17,12 +17,16 @@ gavetas = { "Angelo" : 1, "Daniel": 2, "Danilo": 3} # Dicionario para as gavetas
 #---------------------------------------------------------------------------------------------
 
 # Mapeamento de Hardware:
+#Entradas:
+fototransistores = [ ADC(Pin(26)), ADC(Pin(27)), ADC(Pin(28))] # Fototransistores
+reader = MFRC522(spi_id = 0, sck = 6, miso = 4, mosi = 7, cs = 5, rst = 5) # Leitor RFID
+#Saidas:
+decoder = [machine.Pin(10, machine.Pin.OUT), machine.Pin(11, machine.Pin.OUT)] # Decoder
 Led_on_board = machine.Pin(25, machine.Pin.OUT) # Led ON Board
 buzzer = machine.Pin(2, machine.Pin.OUT) # Buzzer
 gLed = machine.Pin(0, machine.Pin.OUT) # LED verde
 rLed = machine.Pin(1, machine.Pin.OUT) # LED vermelho
 solenoide = [ machine.Pin(12, machine.Pin.OUT), machine.Pin(13, machine.Pin.OUT), machine.Pin(14, machine.Pin.OUT)] # Solenoides
-reader = MFRC522(spi_id = 0, sck = 6, miso = 4, mosi = 7, cs = 5, rst = 5) # Leitor RFID
 rtc = RTC() # rtc
 i2c=I2C(0,scl=Pin(9),sda=Pin(8),freq=200000) # Display OLED
 oled = SSD1306_I2C(WIDTH,HEIGHT,i2c) # Display OLED
@@ -63,6 +67,10 @@ def Campainha( T, n):
         buzzer.off() # Desliga
         time.sleep_ms( int(T/2))
         
+#Funcao para controlar os leds ligados no decoder:
+def Decodifica( l ):
+    decoder[0].value( l &  1)
+    decoder[1].value( l >> 1)
 #---------------------------------------------------------------------------------------------
     
 # Configuracoes Iniciais (Setup):    
@@ -82,7 +90,13 @@ oled.show()
 #---------------------------------------------------------------------------------------------
 
 # Rotina Principal (Loop):
-
+teste = 0
+while 1:
+    Decodifica(teste)
+    teste = (teste + 1) % 4
+    print(teste)
+    #print( fototransistores[0].read_u16())
+    time.sleep_ms(1000) # Aguarda
 while 1:
     oled.fill(0) # Cor de fundo preta
     oled.text("Cofre 1.0", 30, 5)
@@ -145,3 +159,4 @@ while 1:
     #time.sleep_ms(ST) # Aguarda 100 ms
     #Led_on_board.off() # Desliga o LED
     time.sleep_ms(ST) # Aguarda 
+
