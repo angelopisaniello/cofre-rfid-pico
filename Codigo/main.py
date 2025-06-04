@@ -31,8 +31,8 @@ colunas = [Pin(i, Pin.IN, Pin.PULL_DOWN) for i in (19, 20, 21, 22)] # Colunas do
 #Saidas:
 decoder = [machine.Pin(10, machine.Pin.OUT), machine.Pin(11, machine.Pin.OUT)] # Decoder
 solenoide = [ machine.Pin(13, machine.Pin.OUT), machine.Pin(14, machine.Pin.OUT), machine.Pin(15, machine.Pin.OUT)] # Solenoides
-#Led_on_board = machine.Pin(25, machine.Pin.OUT) # Led ON Board
 buzzer = machine.Pin(2, machine.Pin.OUT) # Buzzer
+#Led_on_board = machine.Pin(25, machine.Pin.OUT) # Led ON Board
 gLed = machine.Pin(0, machine.Pin.OUT) # LED verde
 rLed = machine.Pin(1, machine.Pin.OUT) # LED vermelho
 rtc = RTC() # rtc
@@ -109,30 +109,40 @@ oled.show()
 #---------------------------------------------------------------------------------------------
 
 # Rotina Principal (Loop):
-teste = 0
-
-while 1:
-    print(Tecla())
-    time.sleep_ms(100) # Aguarda
-
-while 1:
-    solenoide[0].on()
-    Decodifica(1)
-    time.sleep_ms(3500) # Aguarda
-    Decodifica(0)
-    solenoide[0].off();
-    time.sleep_ms(5000) # Aguarda
+# teste = 0
+# 
+# while 1:
+#     print(Tecla())
+#     time.sleep_ms(100) # Aguarda
+# 
+# while 1:
+#     solenoide[0].on()
+#     Decodifica(1)
+#     time.sleep_ms(3500) # Aguarda
+#     Decodifica(0)
+#     solenoide[0].off();
+#     time.sleep_ms(5000) # Aguarda
     
-while 1:
-    Decodifica(teste)
-    teste = (teste + 1) % 4
-    #print(teste)
-    print( fototransistores[0].read_u16())
-    time.sleep_ms(1500) # Aguarda
+# while 1:
+#     Decodifica(teste)
+#     teste = (teste + 1) % 4
+#     #print(teste)
+#     print( fototransistores[0].read_u16())
+#     time.sleep_ms(1500) # Aguarda
+flag = time.ticks_ms() # Seta a flag (cronometro)
 while 1:
     oled.fill(0) # Cor de fundo preta
     oled.text("Cofre 1.0", 30, 5)
     oled.show()
+    if ( Tecla() != '*'): # * nao pressionado
+        flag = time.ticks_ms() # Reseta a flag (cronometro)
+    if ( time.ticks_diff(time.ticks_ms(), flag) >= 10000): # Pressionou por mais de 10 segundos:
+        flag = time.ticks_ms() # Flag de inicio da subrotina de menu
+        while time.ticks_diff(time.ticks_ms(), flag) < 10000: # Ate 10 segundos de inatividade
+            if Tecla() != -1: # Pressionou alguma tecla
+                flag = time.ticks_ms() # Reseta a flag (cronometro)
+            print(time.ticks_diff(time.ticks_ms(), flag))
+            time.sleep_ms(50) # Aguarda
     reader.init() # Inicia o leitor
     (stat, tag_type) = reader.request(reader.REQIDL) # Leitura
     if stat == reader.OK: # Se a leitura foi bem sucedida
