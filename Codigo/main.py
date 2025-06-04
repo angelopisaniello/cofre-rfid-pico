@@ -32,12 +32,12 @@ colunas = [Pin(i, Pin.IN, Pin.PULL_DOWN) for i in (19, 20, 21, 22)] # Colunas do
 decoder = [machine.Pin(10, machine.Pin.OUT), machine.Pin(11, machine.Pin.OUT)] # Decoder
 solenoide = [ machine.Pin(13, machine.Pin.OUT), machine.Pin(14, machine.Pin.OUT), machine.Pin(15, machine.Pin.OUT)] # Solenoides
 buzzer = machine.Pin(2, machine.Pin.OUT) # Buzzer
+i2c=I2C(0,scl=Pin(9),sda=Pin(8),freq=200000) # Display OLED
+oled = SSD1306_I2C(WIDTH,HEIGHT,i2c) # Display OLED
 #Led_on_board = machine.Pin(25, machine.Pin.OUT) # Led ON Board
 gLed = machine.Pin(0, machine.Pin.OUT) # LED verde
 rLed = machine.Pin(1, machine.Pin.OUT) # LED vermelho
 rtc = RTC() # rtc
-i2c=I2C(0,scl=Pin(9),sda=Pin(8),freq=200000) # Display OLED
-oled = SSD1306_I2C(WIDTH,HEIGHT,i2c) # Display OLED
 #---------------------------------------------------------------------------------------------
 
 # Funcoes:
@@ -100,7 +100,8 @@ print("Entrando na Rotina Principal...")
 time.sleep_ms(250) # Aguarda 250 ms
 #rtc.datetime((2024, 4, 30, 4, 16, 26, 30, 0)) # Configura o horario
 gLed.off() # Desliga o LED de sinalizacao verde   
-rLed.off() # Desliga o LED de sinalizacao verde   
+rLed.off() # Desliga o LED de sinalizacao verde
+Decodifica(3) # Leds desligados
 for i in range(3): # 3 solenoides
     solenoide[i].off() # Desliga os solenoides
 oled.fill(0) # Cor de fundo preta
@@ -136,12 +137,30 @@ while 1:
     oled.show()
     if ( Tecla() != '*'): # * nao pressionado
         flag = time.ticks_ms() # Reseta a flag (cronometro)
+    print(time.ticks_diff(time.ticks_ms(), flag))    
     if ( time.ticks_diff(time.ticks_ms(), flag) >= 10000): # Pressionou por mais de 10 segundos:
+        print("Aguarde...")
+        oled.fill(0) # Cor de fundo preta
+        oled.text("Aguarde...", 30, 25)
+        oled.show()
+        time.sleep_ms(500) # Aguarda
+        while (Tecla() == "*"): # Ainda nao soltou o *
+            time.sleep_ms(50) # Aguarda
         flag = time.ticks_ms() # Flag de inicio da subrotina de menu
+        senha = "" 
         while time.ticks_diff(time.ticks_ms(), flag) < 10000: # Ate 10 segundos de inatividade
-            if Tecla() != -1: # Pressionou alguma tecla
-                flag = time.ticks_ms() # Reseta a flag (cronometro)
-            print(time.ticks_diff(time.ticks_ms(), flag))
+            oled.fill(0) # Cor de fundo preta
+            oled.text("Digite a senha:", 10, 20)
+            oled.text("*" * len(senha), 32, 40)
+            oled.show()
+            aux = Tecla() # Le o teclado
+            if aux != -1: # Pressionou alguma tecla
+                Campainha(300, 1) # Soa
+                senha = senha + aux # adiciona a tecla pressionada a senha
+                while Tecla() == aux: # Enquanto estiver pressionado
+                    time.sleep_ms(50) # Aguarda
+                flag = time.ticks_ms() # Reseta a flag (cronometro)   
+            print(str(time.ticks_diff(time.ticks_ms(), flag)) + "   " + senha)
             time.sleep_ms(50) # Aguarda
     reader.init() # Inicia o leitor
     (stat, tag_type) = reader.request(reader.REQIDL) # Leitura
@@ -200,4 +219,4 @@ while 1:
     #Led_on_board.on() # Liga o LED
     #time.sleep_ms(ST) # Aguarda 100 ms
     #Led_on_board.off() # Desliga o LED
-    time.sleep_ms(ST) # Aguarda 
+    time.sleep_ms(100) # Aguarda 
