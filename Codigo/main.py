@@ -127,6 +127,26 @@ def Abrir_gaveta( gav, us):
     gLed.off() # Desliga o LED de sinalizacao verde                
     print("Gaveta " + str(gav) + " aberta")
     time.sleep(1) # Aguarda 1s
+    ocr = 0 # Numero de ocorrencias
+    buz = 0 # Auxiliar para buzzer
+    flag = time.ticks_ms() # Reseta a flag (cronometro)
+    oled.fill(0) # Cor de fundo preta
+    oled.text("Feche a gaveta", 0, 20)
+    oled.show()
+    Decodifica( gav - 1 ) # 
+    while ocr < 3:
+        valor = fototransistores[gav-1].read_u16() # Conversao AD
+        print("adc = " + str(valor)) # Apenas depuracao
+        if valor< 60000: # Gaveta esta fechada
+            ocr = ocr + 1 # Incrementa o numero de ocorrencias
+        else:
+            ocr = 0 # Zera o numero de ocorrencias
+        if time.ticks_diff(time.ticks_ms(), flag) > 60000: # Gaveta a mais de 60 segundos aberta
+            buzzer.value( buz < 3)
+            buz = (buz + 1) % 6
+        time.sleep_ms(20) # Aguarda 20 ms
+    
+    Decodifica(3) # Apaga os LEDs            
     
 def Menu_principal():
     oled.fill(0) # Cor de fundo preta
@@ -153,6 +173,7 @@ time.sleep_ms(250) # Aguarda 250 ms
 #rtc.datetime((2024, 4, 30, 4, 16, 26, 30, 0)) # Configura o horario
 gLed.off() # Desliga o LED de sinalizacao verde   
 rLed.off() # Desliga o LED de sinalizacao verde
+buzzer.off() # Desliga o buzzer
 Decodifica(3) # Leds desligados
 for i in range(3): # 3 solenoides
     solenoide[i].off() # Desliga os solenoides
