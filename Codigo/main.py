@@ -14,19 +14,27 @@ HEIGHT= 64
 ST = 250 # Tempo de atualizacao em ms
 usuarios = { 111111111: "Angelo", 1587063440:"Daniel", 992307218261: "Danilo"} # Dicionarios para os usuarios
 gavetas = { "Angelo" : 1, "Daniel": 2, "Danilo": 3} # Dicionario para as gavetas
+teclas = [
+    ['1', '2', '3', 'A'],
+    ['4', '5', '6', 'B'],
+    ['7', '8', '9', 'C'],
+    ['*', '0', '#', 'D']
+] # Teclas 
 #---------------------------------------------------------------------------------------------
 
 # Mapeamento de Hardware:
 #Entradas:
 fototransistores = [ ADC(Pin(26)), ADC(Pin(27)), ADC(Pin(28))] # Fototransistores
 reader = MFRC522(spi_id = 0, sck = 6, miso = 4, mosi = 7, cs = 5, rst = 5) # Leitor RFID
+linhas = [Pin(i, Pin.OUT) for i in (15, 16, 17, 18)]# Linhas do teclado
+colunas = [Pin(i, Pin.IN, Pin.PULL_DOWN) for i in (19, 20, 21, 22)] # Colunas do teclado
 #Saidas:
 decoder = [machine.Pin(10, machine.Pin.OUT), machine.Pin(11, machine.Pin.OUT)] # Decoder
-Led_on_board = machine.Pin(25, machine.Pin.OUT) # Led ON Board
+solenoide = [ machine.Pin(13, machine.Pin.OUT), machine.Pin(14, machine.Pin.OUT), machine.Pin(15, machine.Pin.OUT)] # Solenoides
+#Led_on_board = machine.Pin(25, machine.Pin.OUT) # Led ON Board
 buzzer = machine.Pin(2, machine.Pin.OUT) # Buzzer
 gLed = machine.Pin(0, machine.Pin.OUT) # LED verde
 rLed = machine.Pin(1, machine.Pin.OUT) # LED vermelho
-solenoide = [ machine.Pin(12, machine.Pin.OUT), machine.Pin(13, machine.Pin.OUT), machine.Pin(14, machine.Pin.OUT)] # Solenoides
 rtc = RTC() # rtc
 i2c=I2C(0,scl=Pin(9),sda=Pin(8),freq=200000) # Display OLED
 oled = SSD1306_I2C(WIDTH,HEIGHT,i2c) # Display OLED
@@ -71,6 +79,17 @@ def Campainha( T, n):
 def Decodifica( l ):
     decoder[0].value( l &  1)
     decoder[1].value( l >> 1)
+
+#Funcao para retornar a tecla pressionada (ou se nenhuma foi pressionada
+def Tecla():
+    for i, linha in enumerate(linhas):
+        linha.high()  # Ativa linha atual
+        for j, coluna in enumerate(colunas):
+            if coluna.value() == 1:
+                linha.low()
+                return teclas[i][j]
+        linha.low()
+    return -1
 #---------------------------------------------------------------------------------------------
     
 # Configuracoes Iniciais (Setup):    
@@ -91,12 +110,25 @@ oled.show()
 
 # Rotina Principal (Loop):
 teste = 0
+
+while 1:
+    print(Tecla())
+    time.sleep_ms(100) # Aguarda
+
+while 1:
+    solenoide[0].on()
+    Decodifica(1)
+    time.sleep_ms(3500) # Aguarda
+    Decodifica(0)
+    solenoide[0].off();
+    time.sleep_ms(5000) # Aguarda
+    
 while 1:
     Decodifica(teste)
     teste = (teste + 1) % 4
-    print(teste)
-    #print( fototransistores[0].read_u16())
-    time.sleep_ms(1000) # Aguarda
+    #print(teste)
+    print( fototransistores[0].read_u16())
+    time.sleep_ms(1500) # Aguarda
 while 1:
     oled.fill(0) # Cor de fundo preta
     oled.text("Cofre 1.0", 30, 5)
@@ -159,4 +191,3 @@ while 1:
     #time.sleep_ms(ST) # Aguarda 100 ms
     #Led_on_board.off() # Desliga o LED
     time.sleep_ms(ST) # Aguarda 
-
