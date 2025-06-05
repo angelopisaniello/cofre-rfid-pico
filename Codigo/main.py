@@ -31,7 +31,7 @@ linhas = [Pin(i, Pin.OUT) for i in (15, 16, 17, 18)]# Linhas do teclado
 colunas = [Pin(i, Pin.IN, Pin.PULL_DOWN) for i in (19, 20, 21, 22)] # Colunas do teclado
 #Saidas:
 decoder = [machine.Pin(10, machine.Pin.OUT), machine.Pin(11, machine.Pin.OUT)] # Decoder
-solenoide = [ machine.Pin(13, machine.Pin.OUT), machine.Pin(14, machine.Pin.OUT), machine.Pin(15, machine.Pin.OUT)] # Solenoides
+solenoide = [ machine.Pin(14, machine.Pin.OUT), machine.Pin(13, machine.Pin.OUT), machine.Pin(12, machine.Pin.OUT)] # Solenoides
 buzzer = machine.Pin(2, machine.Pin.OUT) # Buzzer
 i2c=I2C(0,scl=Pin(9),sda=Pin(8),freq=200000) # Display OLED
 oled = SSD1306_I2C(WIDTH,HEIGHT,i2c) # Display OLED
@@ -191,7 +191,11 @@ oled.fill(0) # Cor de fundo preta
 oled.text("Cofre 1.0", 30, 5)
 oled.show()
 #---------------------------------------------------------------------------------------------
-
+while 1:
+    solenoide[3 - 1].on()
+    time.sleep(4)
+    solenoide[3 - 1].off()
+    time.sleep(4)
 # Rotina Principal (Loop):
 # teste = 0
 # while 1:
