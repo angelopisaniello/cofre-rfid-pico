@@ -103,7 +103,7 @@ def Cronometrar_abertura(gav, us ):
         oled.text("Tempo: " + str(4-i), 30, 55)
         oled.show()
         Campainha(100, 1)
-        time.sleep(0.9)
+        time.sleep(1)
         oled.fill(0) # Cor de fundo preta
     print(0)
     oled.text("Bem vindo,", 0, 18)
@@ -133,11 +133,11 @@ def Abrir_gaveta( gav, us):
     oled.text("Feche a gaveta", 0, 20)
     oled.show()
     Acende_gaveta( gav ) #
-    time.sleep(5)
+    time.sleep(3)
     while ocr < 3:
         valor = fototransistores[gav-1].read_u16() # Conversao AD
         print("adc = " + str(valor)) # Apenas depuracao
-        if (valor< 60000 and gav == 3) or (valor < 62000 and gav == 2) or (valor < 63000 and gav == 1) or Tecla() == '*': # Gaveta esta fechada
+        if (valor< 57900 and gav == 3) or (valor < 60500 and gav == 2) or (valor < 62000 and gav == 1) or Tecla() == '*': # Gaveta esta fechada
             ocr = ocr + 1 # Incrementa o numero de ocorrencias
         else:
             ocr = 0 # Zera o numero de ocorrencias
@@ -191,11 +191,11 @@ oled.fill(0) # Cor de fundo preta
 oled.text("Cofre 1.0", 30, 5)
 oled.show()
 #---------------------------------------------------------------------------------------------
-while 1:
-    solenoide[3 - 1].on()
-    time.sleep(4)
-    solenoide[3 - 1].off()
-    time.sleep(4)
+# while 1:
+#     solenoide[3 - 1].on()
+#     time.sleep(4)
+#     solenoide[3 - 1].off()
+#     time.sleep(4)
 # Rotina Principal (Loop):
 # teste = 0
 # while 1:
@@ -261,7 +261,9 @@ while 1:
                 flag = time.ticks_ms() # Reseta a flag (cronometro)   
             print(str(time.ticks_diff(time.ticks_ms(), flag)) + "   " + senha)
             if ( len(senha) == 6):
+                print("Mestre")
                 if ( senha == SENHA): # Senha correta
+                    tentativa = 0
                     Campainha(200, 2)
                     flag = time.ticks_ms() # Reseta a flag (cronometro)   
                     aux = -1
@@ -310,4 +312,3 @@ while 1:
                 rLed.off() # Desliga o LED de sinalizacao vermelho
             flag = time.ticks_ms() # Flag de inicio da subrotina de menu
     time.sleep_ms(100) # Aguarda 
-
