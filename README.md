@@ -103,6 +103,10 @@ As peças foram concebidas visando **facilidade de fabricação e montagem**, se
 
 ![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/main/Folha_de_desenho_v2.png)
 
+### 🔐🗄️ Imagem do Produto Final
+
+![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/c5b64099f9fb3f7916a1c895a6baed32395207fb/Projeto%20Mec%C3%A2nico/Imagem_01.jpg)
+
 > Satatus: Developing ⚠️
 
 ## Vídeo Explicativo
