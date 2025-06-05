@@ -12,7 +12,7 @@ from ssd1306 import SSD1306_I2C # Display OLED
 WIDTH =128 
 HEIGHT= 64
 ST = 250 # Tempo de atualizacao em ms
-usuarios = { 111111111: "Angelo", 1587063440:"Daniel", 992307218261: "Danilo"} # Dicionarios para os usuarios
+usuarios = { 111111111: "Angelo", 1587063440:"Daniel", 2307218261: "Danilo"} # Dicionarios para os usuarios
 gavetas = { "Angelo" : 1, "Daniel": 2, "Danilo": 3} # Dicionario para as gavetas
 teclas = [
     ['1', '3', 'A', '2'],
@@ -133,11 +133,12 @@ def Abrir_gaveta( gav, us):
     oled.fill(0) # Cor de fundo preta
     oled.text("Feche a gaveta", 0, 20)
     oled.show()
-    Decodifica( gav  ) # 
+    Acende_gaveta( gav ) #
+    time.sleep(5)
     while ocr < 3:
         valor = fototransistores[gav-1].read_u16() # Conversao AD
         print("adc = " + str(valor)) # Apenas depuracao
-        if valor< 60000: # Gaveta esta fechada
+        if valor< 63100 or Tecla() == '*': # Gaveta esta fechada
             ocr = ocr + 1 # Incrementa o numero de ocorrencias
         else:
             ocr = 0 # Zera o numero de ocorrencias
@@ -145,8 +146,7 @@ def Abrir_gaveta( gav, us):
             buzzer.value( buz < 3)
             buz = (buz + 1) % 6
         time.sleep_ms(20) # Aguarda 20 ms
-    
-    Decodifica(0) # Apaga os LEDs            
+    Acende_gaveta( -1 ) # Apaga os LEDs            
     
 def Menu_principal():
     oled.fill(0) # Cor de fundo preta
@@ -162,6 +162,16 @@ def Menu_mestre(): # Menu de gerenciamente
     oled.text("3 - Abrir gaveta 3", 0, 35)
     oled.text("4 - Retroceder", 0, 45)
     oled.show()
+    
+def Acende_gaveta( gav ):
+    if( gav == 3):
+        Decodifica(1)
+    elif gav == 2:
+         Decodifica(2)           
+    elif gav == 1:
+        Decodifica(0)
+    else:
+        Decodifica(3)
 #---------------------------------------------------------------------------------------------
     
 # Configuracoes Iniciais (Setup):    
@@ -184,7 +194,9 @@ oled.show()
 
 # Rotina Principal (Loop):
 # teste = 0
-# 
+while 1:
+    gLed.on()
+    rLed.on()
 # while 1:
 #     print(Tecla())
 #     time.sleep_ms(100) # Aguarda
@@ -197,21 +209,24 @@ oled.show()
 #     solenoide[0].off();
 #     time.sleep_ms(5000) # Aguarda
 teste = 0
-while True:
-    # Testa leitura dos ADCs
-    for i in range(3):
-        print(f"ADC {i}: {fototransistores[i].read_u16()}")
-    time.sleep(0.5)
-while 1:
-    #Decodifica(0/)
-    print( fototransistores[2].read_u16())
-
-while 1:
-    Decodifica(teste)
-    teste = (teste + 1) % 4
-    print(teste)
-    print( fototransistores[teste-1].read_u16())
-    time.sleep_ms(3000) # Aguarda
+Acende_gaveta( -1 )
+# # while True:
+# #     # Testa leitura dos ADCs
+# #     for i in range(3):
+# #         print(f"ADC {i}: {fototransistores[i].read_u16()}")
+# #     time.sleep(0.5)
+# while 1:
+#     #Decodifica(0/)
+#     fototransistores[0] = ADC(Pin(28))
+#     print( fototransistores[0].read_u16())
+#     time.sleep(0.2)
+# 
+# while 1:
+#     Decodifica(teste)
+#     teste = (teste + 1) % 4
+#     print(teste)
+#     print( fototransistores[teste-1].read_u16())
+#     time.sleep_ms(3000) # Aguarda
 flag = time.ticks_ms() # Seta a flag (cronometro)
 while 1:
     Menu_principal()
@@ -293,3 +308,5 @@ while 1:
                 buzzer.off()# Desliga
                 rLed.off() # Desliga o LED de sinalizacao vermelho   
     time.sleep_ms(100) # Aguarda 
+
+
