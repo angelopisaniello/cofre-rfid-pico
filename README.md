@@ -80,6 +80,8 @@ Os diagramas do circuito eletrônico do projeto foram desenvolvidos utilizando o
 
 Os esquemáticos incluem todos os componentes principais do sistema: Raspberry Pi Pico, RFID, LEDs de sinalização, drivers MOSFET, sensores ópticos, entre outros.
 
+![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/72e9cd8d6a3c8094ddc1b43018709e2de372c4bc/Esquematico_eletronico/Esquem%C3%A1tico.png).
+
 ## 📥 Circuito Eletrônico
 
 ![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/dc86d4a58f1d83bd9ab3b703471dcb323ed62721/Esquematico_eletronico/Imagem_01.jpg).
