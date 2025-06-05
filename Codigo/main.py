@@ -138,7 +138,7 @@ def Abrir_gaveta( gav, us):
     while ocr < 3:
         valor = fototransistores[gav-1].read_u16() # Conversao AD
         print("adc = " + str(valor)) # Apenas depuracao
-        if valor< 63100 or Tecla() == '*': # Gaveta esta fechada
+        if (valor< 60000 and gav == 3) or (valor < 62000 and gav == 2) or (valor < 6300 and gav == 1) or Tecla() == '*': # Gaveta esta fechada
             ocr = ocr + 1 # Incrementa o numero de ocorrencias
         else:
             ocr = 0 # Zera o numero de ocorrencias
@@ -194,9 +194,6 @@ oled.show()
 
 # Rotina Principal (Loop):
 # teste = 0
-while 1:
-    gLed.on()
-    rLed.on()
 # while 1:
 #     print(Tecla())
 #     time.sleep_ms(100) # Aguarda
@@ -308,5 +305,3 @@ while 1:
                 buzzer.off()# Desliga
                 rLed.off() # Desliga o LED de sinalizacao vermelho   
     time.sleep_ms(100) # Aguarda 
-
-
