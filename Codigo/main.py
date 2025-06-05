@@ -15,10 +15,10 @@ ST = 250 # Tempo de atualizacao em ms
 usuarios = { 111111111: "Angelo", 1587063440:"Daniel", 992307218261: "Danilo"} # Dicionarios para os usuarios
 gavetas = { "Angelo" : 1, "Daniel": 2, "Danilo": 3} # Dicionario para as gavetas
 teclas = [
-    ['1', '2', '3', 'A'],
-    ['4', '5', '6', 'B'],
-    ['7', '8', '9', 'C'],
-    ['*', '0', '#', 'D']
+    ['1', '3', 'A', '2'],
+    ['4', '6', 'B', '5'],
+    ['7', '9', 'C', '8'],
+    ['*', '#', 'D', '0']
 ] # Teclas
 SENHA = "123456" # Senha mestre do cofre
 #---------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ SENHA = "123456" # Senha mestre do cofre
 # Mapeamento de Hardware:
 #Entradas:
 fototransistores = [ ADC(Pin(26)), ADC(Pin(27)), ADC(Pin(28))] # Fototransistores
-reader = MFRC522(spi_id = 0, sck = 6, miso = 4, mosi = 7, cs = 5, rst = 5) # Leitor RFID
+reader = MFRC522(spi_id = 0, sck = 6, miso = 4, mosi = 7, cs = 5, rst = 3) # Leitor RFID
 linhas = [Pin(i, Pin.OUT) for i in (15, 16, 17, 18)]# Linhas do teclado
 colunas = [Pin(i, Pin.IN, Pin.PULL_DOWN) for i in (19, 20, 21, 22)] # Colunas do teclado
 #Saidas:
@@ -133,7 +133,7 @@ def Abrir_gaveta( gav, us):
     oled.fill(0) # Cor de fundo preta
     oled.text("Feche a gaveta", 0, 20)
     oled.show()
-    Decodifica( gav - 1 ) # 
+    Decodifica( gav  ) # 
     while ocr < 3:
         valor = fototransistores[gav-1].read_u16() # Conversao AD
         print("adc = " + str(valor)) # Apenas depuracao
@@ -146,7 +146,7 @@ def Abrir_gaveta( gav, us):
             buz = (buz + 1) % 6
         time.sleep_ms(20) # Aguarda 20 ms
     
-    Decodifica(3) # Apaga os LEDs            
+    Decodifica(0) # Apaga os LEDs            
     
 def Menu_principal():
     oled.fill(0) # Cor de fundo preta
@@ -188,7 +188,7 @@ oled.show()
 # while 1:
 #     print(Tecla())
 #     time.sleep_ms(100) # Aguarda
-# 
+
 # while 1:
 #     solenoide[0].on()
 #     Decodifica(1)
@@ -196,13 +196,22 @@ oled.show()
 #     Decodifica(0)
 #     solenoide[0].off();
 #     time.sleep_ms(5000) # Aguarda
-    
-# while 1:
-#     Decodifica(teste)
-#     teste = (teste + 1) % 4
-#     #print(teste)
-#     print( fototransistores[0].read_u16())
-#     time.sleep_ms(1500) # Aguarda
+teste = 0
+while True:
+    # Testa leitura dos ADCs
+    for i in range(3):
+        print(f"ADC {i}: {fototransistores[i].read_u16()}")
+    time.sleep(0.5)
+while 1:
+    #Decodifica(0/)
+    print( fototransistores[2].read_u16())
+
+while 1:
+    Decodifica(teste)
+    teste = (teste + 1) % 4
+    print(teste)
+    print( fototransistores[teste-1].read_u16())
+    time.sleep_ms(3000) # Aguarda
 flag = time.ticks_ms() # Seta a flag (cronometro)
 while 1:
     Menu_principal()
