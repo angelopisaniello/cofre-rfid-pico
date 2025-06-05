@@ -124,9 +124,8 @@ def Abrir_gaveta( gav, us):
     gLed.on() # Liga o LED de sinalizacao verde
     Cronometrar_abertura( gav, us ) # Mostra o cronometro
     solenoide[gav-1].off() # Desliga o solenoide
-    gLed.off() # Desliga o LED de sinalizacao verde                
     print("Gaveta " + str(gav) + " aberta")
-    time.sleep(1) # Aguarda 1s
+    time.sleep(0.5) # Aguarda 0.5s
     ocr = 0 # Numero de ocorrencias
     buz = 0 # Auxiliar para buzzer
     flag = time.ticks_ms() # Reseta a flag (cronometro)
@@ -138,7 +137,7 @@ def Abrir_gaveta( gav, us):
     while ocr < 3:
         valor = fototransistores[gav-1].read_u16() # Conversao AD
         print("adc = " + str(valor)) # Apenas depuracao
-        if (valor< 60000 and gav == 3) or (valor < 62000 and gav == 2) or (valor < 6300 and gav == 1) or Tecla() == '*': # Gaveta esta fechada
+        if (valor< 60000 and gav == 3) or (valor < 62000 and gav == 2) or (valor < 63000 and gav == 1) or Tecla() == '*': # Gaveta esta fechada
             ocr = ocr + 1 # Incrementa o numero de ocorrencias
         else:
             ocr = 0 # Zera o numero de ocorrencias
@@ -146,6 +145,7 @@ def Abrir_gaveta( gav, us):
             buzzer.value( buz < 3)
             buz = (buz + 1) % 6
         time.sleep_ms(20) # Aguarda 20 ms
+    gLed.off() # Desliga o LED de sinalizacao verde                
     Acende_gaveta( -1 ) # Apaga os LEDs            
     
 def Menu_principal():
@@ -303,5 +303,7 @@ while 1:
                 oled.show()
                 time.sleep(1) # Aguarda 1s
                 buzzer.off()# Desliga
-                rLed.off() # Desliga o LED de sinalizacao vermelho   
+                rLed.off() # Desliga o LED de sinalizacao vermelho
+            flag = time.ticks_ms() # Flag de inicio da subrotina de menu
     time.sleep_ms(100) # Aguarda 
+
