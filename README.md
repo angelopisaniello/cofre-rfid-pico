@@ -109,6 +109,7 @@ As peças foram concebidas visando **facilidade de fabricação e montagem**, se
 
 ![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/c5b64099f9fb3f7916a1c895a6baed32395207fb/Projeto%20Mec%C3%A2nico/Imagem_01.jpg)
 
+- [Arquivo do Projeto do Fusion 360](https://github.com/angelopisaniello/cofre-rfid-pico/blob/8d926f475f4df262f432c6a18744f179cbe58f7a/Projeto%20Mec%C3%A2nico/Angelo%20v4%20v16%20v1.f3d)
 
 ## Vídeo Explicativo
 
