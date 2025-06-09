@@ -27,22 +27,22 @@ Este projeto tem aplicação potencial em **cofres de hotel**, **estações púb
 
 ## 📋 Requisitos do Sistema
 
-| ID     | Requisito                                                                                         | Tipo         |
-|--------|---------------------------------------------------------------------------------------------------|--------------|
-| SR-01  | Ser composto por módulos prontos e de fácil acesso                                                | Obrigatório  |
-| SR-02  | Controlar a abertura de 3 gavetas de forma independente por meio de autenticação RFID             | Obrigatório  |
-| SR-03  | Travar e destravar as gavetas utilizando solenoides de 12V                                        | Obrigatório  |
-| SR-04  | Detectar o estado (aberta/fechada) de cada gaveta utilizando sensores ópticos                     | Obrigatório  |
-| SR-05  | Fornecer feedback visual através de LEDs indicadores                                              | Obrigatório  |
-| SR-06  | Fornecer feedback sonoro através de buzzer                                                        | Obrigatório  |
-| SR-07  | Permitir comandos e interação local por meio de teclado matricial                                 | Obrigatório  |
-| SR-08  | Exibir informações no display OLED (status, mensagens de operação)                                | Obrigatório  |
-| SR-09  | Possuir sistema de proteção elétrica adequado (diodos flyback, MOSFETs para acionamento)          | Obrigatório  |
-| SR-10  | Ser alimentado por fonte de 12V com corrente suficiente para acionar os 3 solenoides              | Obrigatório  |
-| SR-11  | Ser montado em uma estrutura mecânica adequada (gaveteiro e caixa segura para o mecanismo)        | Obrigatório  |
-| SR-12  | Garantir a segurança contra sobreaquecimento dos solenoides com controle de tempo de acionamento  | Obrigatório  |
-| SR-13  | Permitir futuras expansões, como comunicação com sistema externo (Wi-Fi, Bluetooth)               | Desejável    |
-| SR-14  | Implementar modo de bloqueio total, caso tentativas de abertura não autorizadas sejam detectadas  | Desejável    |
+| ID       | Requisito                                                                                         | Tipo         |
+|----------|---------------------------------------------------------------------------------------------------|--------------|
+| SR-01    | Ser composto por módulos prontos e de fácil acesso                                                | Obrigatório  |
+| SR-02    | Controlar a abertura de 3 gavetas de forma independente por meio de autenticação RFID             | Obrigatório  |
+| SR-03    | Travar e destravar as gavetas utilizando solenoides de 12V                                        | Obrigatório  |
+| SR-04    | Detectar o estado (aberta/fechada) de cada gaveta utilizando sensores ópticos                     | Obrigatório  |
+| SR-05    | Fornecer feedback visual através de LEDs indicadores                                              | Obrigatório  |
+| SR-06    | Fornecer feedback sonoro através de buzzer                                                        | Obrigatório  |
+| SR-07    | Permitir comandos e interação local por meio de teclado matricial                                 | Obrigatório  |
+| SR-08    | Exibir informações no display OLED (status, mensagens de operação)                                | Obrigatório  |
+| SR-09    | Possuir sistema de proteção elétrica adequado (diodos flyback, MOSFETs para acionamento)          | Obrigatório  |
+| SR-10    | Ser alimentado por fonte de 12V com corrente suficiente para acionar os 3 solenoides              | Obrigatório  |
+| SR-11    | Ser montado em uma estrutura mecânica adequada (gaveteiro e caixa segura para o mecanismo)        | Obrigatório  |
+| SR-12    | Garantir a segurança contra sobreaquecimento dos solenoides com controle de tempo de acionamento  | Obrigatório  |
+| SR-13    | Permitir futuras expansões, como comunicação com sistema externo (Wi-Fi, Bluetooth)               | Desejável    |
+| SR-14    | Implementar modo de bloqueio total, caso tentativas de abertura não autorizadas sejam detectadas  | Desejável    |
 
 
 ## 📝 Lista de Componentes
