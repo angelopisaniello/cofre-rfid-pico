@@ -64,6 +64,30 @@ Este projeto tem aplicação potencial em **cofres de hotel**, **estações púb
 | Placa padrão ?????                      |     01     | R$          |
 |                                         |      Total | R$ 344,00   |
 
+| Descrição do Produto                    | Quantidade | Valor Unitário | Valor Total |
+|-----------------------------------------|------------|----------------|-------------|
+| Raspberry PI PICO	                      | 01	       | R$ 159,90 	    | R$ 159,90   |
+| Mini Solenoide 12V	                    | 03         | R$ 37,90 	    | R$ 113,70   | 
+| Kit RFID Mfrc522 - 13,56 (MHz)          | 01	       | R$ 12,82 	    | R$ 12,82    |
+| Teclado Matricial de Membrana 16 Teclas	| 01	       | R$ 6,17 	      | R$ 6,17     |
+| Display oLED 0.96 I2C Branco	          | 01	       | R$ 21,75       | R$ 21,75    | 
+| Buzzer Passivo 5V 	                    | 01	       | R$ 1,69 	      | R$ 1,69     | 
+| LED branco 3mm alto brilho	            | 03	       | R$ 0,21 	      | R$ 0,63     | 
+| Fototransistor transparente TIL78 3mm	  | 03         | R$ 2,20 	      | R$ 6,60     |
+| LED difuso 5mm Verde	                  | 01	       | R$ 0,23 	      | R$ 0,23     | 
+| LED difuso 5mm Vermeho                  | 01	       | R$ 0,18        | R$ 0,18     |
+| Transistor BC327	3	 R$ 0,20 	 R$ 0,60 
+Decoder 74HC138	1	 R$ 2,60 	 R$ 2,60 
+Diodo 1N4007	4	 R$ 0,10 	 R$ 0,40 
+Pilha AA	4	 R$ 1,57 	 R$ 6,29 
+Filameno PLA 	1,19	140	 R$ 166,60 
+Conversor Dc Dc Buck Boost 2 Em 1 Step Up E Down Xl6019	1	 R$ 25,50 	 R$ 25,50 
+Placa Universal Dupla Face	1	 R$ 7,00 	 R$ 7,00 
+MOSFET IRLZ44N	3	 R$ 4,00 	 R$ 12,00 
+		Total	 R$ 333,56 
+![image](https://github.com/user-attachments/assets/56499f66-1a3d-484d-a1a0-c2dd6d4b557c)
+
+
 
 ## Diagrama de Blocos
 ![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/c4062b0324a2e89cb6f8d55536021832ba76cf56/PROJETO_V5.png)
