@@ -97,7 +97,9 @@ As peças foram concebidas visando **facilidade de fabricação e montagem**, se
 - [Arquivo do Projeto do Fusion 360](https://github.com/angelopisaniello/cofre-rfid-pico/blob/8d926f475f4df262f432c6a18744f179cbe58f7a/Projeto%20Mec%C3%A2nico/Angelo%20v4%20v16%20v1.f3d)
 
 ## Vídeo Explicativo
-https://youtu.be/eFmRIbqSjfY
+
+- [Link do Youtube](https://youtu.be/eFmRIbqSjfY
+
 ## ✅ Conclusão
 
 O projeto apresentado integra hardware, software embarcado e projeto mecânico para demonstrar um sistema de controle de gavetas inteligentes com autenticação por RFID. A solução proposta tem aplicações práticas em segurança e automação, e poderá ser expandida para novas funcionalidades como controle remoto via rede e sensores adicionais.
