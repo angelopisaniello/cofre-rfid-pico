@@ -1,7 +1,5 @@
 # Sistema de Gavetas Inteligentes com Abertura por RFID
 
-> Satatus: Developing ⚠️
-
 ## Descrição Geral
 Este projeto foi desenvolvido como parte da disciplina **EEN251 - Microcontroladores e Sistemas Embarcados** do Instituto Mauá de Tecnologia.
 
@@ -49,16 +47,15 @@ Este projeto tem aplicação potencial em **cofres de hotel**, **estações púb
 
 ## 📝 Lista de Componentes
 
-> Satatus: Developing ⚠️
 >
 | Descrição do Produto                    | Quantidade | Valor Total |
 |-----------------------------------------|------------|-------------|
-| Raspberry Pi Picpo (Zero)               |     01     | R$ 159,90   |
+| Raspberry Pi Pico (Zero)               |     01     | R$ 159,90   |
 | Mini Solenoide 12 (V)                   |     03     | R$ 129,28   |
 | Kit RFID Mfrc522 - 13,56 (MHz)          |     01     | R$ 12,82    |
 | Tag RFID - Chaveiro (13,56Mhz)          |     02     | R$ 3,60     |
 | Teclado Matricial de Membrana 16 Teclas |     01     | R$ 6,17     |
-| Display oLED 0.96 I2C Branco            |     01     | R$ 21,75    |
+| Display OLED 0.96 I2C Branco            |     01     | R$ 21,75    |
 | Buzzer Passivo 5V                       |     01     | R$ 1,69     |
 | Kit Receptor e Emissor IR 5mm           |     03     | R$ 8,55     |
 | LED 5mm Verde                           |     01     | R$ 0,24     |
@@ -82,11 +79,10 @@ Os esquemáticos incluem todos os componentes principais do sistema: Raspberry P
 
 ![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/72e9cd8d6a3c8094ddc1b43018709e2de372c4bc/Esquematico_eletronico/Esquem%C3%A1tico.png).
 
-## 📥 Circuito Eletrônico
+## 📷 Visualização do Circuito Montado
 
 ![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/dc86d4a58f1d83bd9ab3b703471dcb323ed62721/Esquematico_eletronico/Imagem_01.jpg).
 
-> Satatus: Developing ⚠️
 
 ## 🛠️ Projeto Mecânico das Gavetas
 
@@ -101,7 +97,7 @@ As peças foram concebidas visando **facilidade de fabricação e montagem**, se
 - Material **biodegradável** e com baixo impacto ambiental.
 - **Acabamento estético** superior, com superfície lisa e sem necessidade de pós-processamento complexo.
 
-### 🖥️ Por que o Autodesk Fusion 360?
+### 🖥️ Por que escolhemos o Autodesk Fusion 360?
 - Ferramenta **profissional e amplamente utilizada** na indústria.
 - Permite integração completa entre **modelagem 3D**, **simulações** e **geração de arquivos para impressão (STL)**.
 - Licença gratuita para **uso educacional**, ideal para o desenvolvimento acadêmico.
@@ -113,12 +109,12 @@ As peças foram concebidas visando **facilidade de fabricação e montagem**, se
 
 ![image alt](https://github.com/angelopisaniello/cofre-rfid-pico/blob/c5b64099f9fb3f7916a1c895a6baed32395207fb/Projeto%20Mec%C3%A2nico/Imagem_01.jpg)
 
-> Satatus: Developing ⚠️
 
 ## Vídeo Explicativo
 
-> Satatus: Developing ⚠️
+## ✅ Conclusão
 
-## Conclusão
+O projeto apresentado integra hardware, software embarcado e projeto mecânico para demonstrar um sistema de controle de gavetas inteligentes com autenticação por RFID. A solução proposta tem aplicações práticas em segurança e automação, e poderá ser expandida para novas funcionalidades como controle remoto via rede e sensores adicionais.
 
-> Satatus: Developing ⚠️
+> Projeto desenvolvido para a disciplina EEN251 - Microcontroladores e Sistemas Embarcados | Instituto Mauá de Tecnologia.
+
