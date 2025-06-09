@@ -47,8 +47,7 @@ Este projeto tem aplicação potencial em **cofres de hotel**, **estações púb
 
 ## 📝 Lista de Componentes
 
-![image](https://github.com/user-attachments/assets/56499f66-1a3d-484d-a1a0-c2dd6d4b557c)
-
+![image](https://github.com/angelopisaniello/cofre-rfid-pico/blob/c823bec8c20731a69ab787b1f216f1d6f6b832eb/Esquematico_eletronico/Lista%20de%20Material_rev1.png)
 
 
 ## Diagrama de Blocos
